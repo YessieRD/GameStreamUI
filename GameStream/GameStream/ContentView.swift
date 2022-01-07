@@ -82,6 +82,8 @@ struct InicioYRegistroView:View {
 struct InicioSesionView: View {
     
     @State var correo: String = ""
+    @State var contraseña: String = ""
+
     
     var body: some View {
         
@@ -96,14 +98,32 @@ struct InicioSesionView: View {
                 ZStack(alignment: .leading){
                     
                      if correo.isEmpty {
-                   Text("ejemplo@"+"gmail.com").font(.caption).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0)) //no me esta funcionando, me sigue saliendo azul cuando debe ser gray
+                         Text("ejemplo@"+"gmail.com").font(.caption).foregroundColor(.gray)
                      
                         }
                     
                     TextField("", text: $correo)
                     
+                    
                 }
                 
+                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+                
+                
+                Text("Contraseña").foregroundColor(Color("Dark-Cian"))
+
+                ZStack(alignment: .leading){
+                    
+                     if contraseña.isEmpty {
+                         Text("Escribe tu Contraseña").font(.caption).foregroundColor(.gray)
+                     
+                        }
+            
+                  SecureField("", text: $contraseña)
+            
+                }
+                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+
                 
             }.padding(.horizontal, 77.0)
         }
