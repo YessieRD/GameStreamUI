@@ -19,7 +19,7 @@ struct ContentView: View {
             
             VStack{
                 
-                Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42)
+                Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 240).padding(.bottom, 46)
                 
                 
                 InicioYRegistroView()
@@ -41,13 +41,13 @@ struct InicioYRegistroView:View {
         VStack{
             
             HStack{
-                Spacer()
+               //Spacer()
                 
                 Button("INICIA SESIÓN") {
                 tipoInicioSesion = true
                     print("Pantalla Inicio Sesion")
                 }
-                .foregroundColor(tipoInicioSesion ? .white : .gray)
+                .foregroundColor(tipoInicioSesion ? .white : .gray).font(.title3)
                 
                 Spacer()
                 
@@ -56,14 +56,14 @@ struct InicioYRegistroView:View {
 
                   print("Pantalla de Registro")
                   }
-                 .foregroundColor(tipoInicioSesion ? .gray : .white)
+                 .foregroundColor(tipoInicioSesion ? .gray : .white).font(.title3)
 
                   
-                Spacer()
-            }
+               // Spacer()
+            } .padding(.horizontal, 30)
             
             
-            Spacer(minLength: 42)
+            Spacer(minLength: 63)
             
             
             if tipoInicioSesion == true{
@@ -110,7 +110,10 @@ struct InicioSesionView: View {
                 Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
                 
                 
+
+
                 Text("Contraseña").foregroundColor(Color("Dark-Cian"))
+               
 
                 ZStack(alignment: .leading){
                     
@@ -122,15 +125,63 @@ struct InicioSesionView: View {
                   SecureField("", text: $contraseña)
             
                 }
-                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 1)
 
                 
-            }.padding(.horizontal, 77.0)
+                Text("Olvidaste tu contraseña?").font(.footnote).frame(width: 320, alignment: .trailing).foregroundColor(Color("Dark-Cian")).padding(.bottom, 30)
+
+                
+                Button(action: iniciarSesion, label: {
+                    Text("INICIAR SESIÓN").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 1.0).shadow(color: .white, radius: 6))
+                })
+                
+                
+                Text("Inicar sesión con redes sociales").foregroundColor(.white).frame(width: 300, height: 50, alignment: .center).padding(.top, 38)
+                
+              
+          
+                HStack {
+                    Button(action: iniciarSesionFacebook, label: {
+                        Text("Facebook").fontWeight(.bold).foregroundColor(.white).frame(alignment: .leading).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).cornerRadius(10.0).overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)))
+                        
+                        
+                        
+                        
+                  //      Text("Facebook").fontWeight(.bold).foregroundColor(.white).frame(alignment: .leading).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color.green).cornerRadius(10.0).overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color(.gray)))
+                        
+                        
+                        
+                    }).padding(3)
+                    
+                    Button(action: iniciarSesionTwitter, label: {
+                        Text("Twitter").fontWeight(.bold).foregroundColor(.white).frame(alignment: .trailing).padding(EdgeInsets(top: 9, leading: 48, bottom: 9, trailing: 48)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).cornerRadius(10.0).overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)))
+                        
+                    }).padding(2)
+                    
+                }
+                
+                
+            }.padding(.horizontal, 30.0)
         }
         
         
         
     }
+}
+
+
+func iniciarSesion() {
+    print("estoy iniciando sesion")
+}
+
+func iniciarSesionFacebook() {
+    print("estoy iniciando sesion con Facebook")
+
+}
+
+func iniciarSesionTwitter(){
+    print("estoy iniciando sesion con Twitter")
+
 }
 
 
