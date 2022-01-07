@@ -34,20 +34,17 @@ struct ContentView: View {
 
 struct InicioYRegistroView:View {
     
-    @State var tipoInicioSesion = true
+    @State var tipoInicioSesion:Bool = true
     
     var body: some View{
         
         VStack{
             
             HStack{
-                
-                
                 Spacer()
                 
                 Button("INICIA SESIÓN") {
                 tipoInicioSesion = true
-                    
                     print("Pantalla Inicio Sesion")
                 }
                 .foregroundColor(tipoInicioSesion ? .white : .gray)
@@ -82,20 +79,28 @@ struct InicioYRegistroView:View {
 }
  
 
-struct InicioSesionView:View {
-    var body: some View{
+struct InicioSesionView: View {
+    
+    @State var correo: String = ""
+    
+    var body: some View {
         
      
         ScrollView {
             
-            VStack(alignment:.leading) {
+            VStack(alignment: .leading) {
                 
                 Text("Correo electrónico").foregroundColor(Color("Dark-Cian"))
                 
                 
-                ZStack{
+                ZStack(alignment: .leading){
                     
-                    Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
+                     if correo.isEmpty {
+                   Text("ejemplo@"+"gmail.com").font(.caption).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0)) //no me esta funcionando, me sigue saliendo azul cuando debe ser gray
+                     
+                        }
+                    
+                    TextField("", text: $correo)
                     
                 }
                 
