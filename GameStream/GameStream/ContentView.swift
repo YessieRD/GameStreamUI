@@ -30,7 +30,7 @@ struct ContentView: View {
     }
 }
 
-
+//Pantalla 1
 
 struct InicioYRegistroView:View {
     
@@ -78,13 +78,8 @@ struct InicioYRegistroView:View {
 }
 }
  
-
 struct InicioSesionView: View {
-    
-    @State var correo: String = ""
-    @State var contraseña: String = ""
-
-    
+       
     var body: some View {
         
         Spacer(minLength: 63)
@@ -92,53 +87,20 @@ struct InicioSesionView: View {
      
         ScrollView {
             
-            VStack(alignment: .leading) {
-                
-                Text("Correo electrónico").foregroundColor(Color("Dark-Cian"))
-                
-                
-                ZStack(alignment: .leading){
-                    
-                     if correo.isEmpty {
-                         Text("ejemplo@"+"gmail.com").font(.caption).foregroundColor(.gray)
-                     
-                        }
-                    
-                    TextField("", text: $correo)
-                    
-                    
-                }
-                
-                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 26.0)
-                
-                
-
-
-                Text("Contraseña").foregroundColor(Color("Dark-Cian"))
-               
-
-                ZStack(alignment: .leading){
-                    
-                     if contraseña.isEmpty {
-                         Text("Escribe tu Contraseña").font(.caption).foregroundColor(.gray)
-                     
-                        }
-            
-                  SecureField("", text: $contraseña)
-            
-                }
-                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 1)
-
-                
-                Text("Olvidaste tu contraseña?").font(.footnote).frame(width: 320, alignment: .trailing).foregroundColor(Color("Dark-Cian")).padding(.bottom, 30)
+            VStack {
+   
+                EmailPass()
+     
+                Text("Olvidaste tu contraseña?").font(.footnote).frame(width: 340, alignment: .trailing).foregroundColor(Color("Dark-Cian")).padding(.bottom, 40)
 
                 
                 Button(action: iniciarSesion, label: {
                     Text("INICIAR SESIÓN").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 1.0).shadow(color: .white, radius: 6))
                 })
                 
+                Text("Incia sesión con redes sociales").foregroundColor(.white).frame(width: 300, height: 50, alignment: .center).padding(.top, 38)
                 
-                IniciarSesionRedes()
+                BotonesRedes()
              
                 
                 
@@ -148,23 +110,10 @@ struct InicioSesionView: View {
         
         
     }
-} //End of InicioSesionView
-
-
-func iniciarSesion() {
-    print("estoy iniciando sesion")
 }
 
-func iniciarSesionFacebook() {
-    print("estoy iniciando sesion con Facebook")
 
-}
-
-func iniciarSesionTwitter(){
-    print("estoy iniciando sesion con Twitter")
-
-}
-
+// Pantalla 2
 
 struct RegistroView:View {
     
@@ -234,7 +183,7 @@ struct RegistroView:View {
                   SecureField("", text: $contraseña)
             
                 }
-                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 30)
+                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 50)
 
                 
         
@@ -242,8 +191,9 @@ struct RegistroView:View {
                     Text("REGÍSTRATE").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 1.0).shadow(color: .white, radius: 6))
                 })
                 
+                Text("Regístrate con redes sociales").foregroundColor(.white).frame(width: 350, height: 50, alignment: .center).padding(.top, 38)
                 
-              IniciarSesionRedes()
+              BotonesRedes()
                 
               
           
@@ -254,45 +204,19 @@ struct RegistroView:View {
     }
 
 }
-func tomarFoto() {
-}
-
-func registrate() {
-    print("te registraste")
-}
 
 
-struct IniciarSesionRedes: View {
-    var body: some View {
-    
-        VStack{
-            
-            Text("Regístrate con redes sociales").foregroundColor(.white).frame(width: 300, height: 50, alignment: .center).padding(.top, 38)
-        
-        HStack {
-            Button(action: iniciarSesionFacebook, label: {
-                Text("Facebook").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
-        
-            }).padding(3)
-            
-            Button(action: iniciarSesionTwitter, label: {
-                Text("Twitter").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
-                
-            }).padding(3)
-            
-        }
-    
-        }
-        }
-}
-struct emailPass: View{
+
+//Elementos Especificos
+
+struct EmailPass: View{
     
     @State var correo: String = ""
     @State var contraseña: String = ""
-
+    
     var body: some View{
     
-        VStack{
+        VStack(alignment: .leading){
             
             Text("Correo electrónico").foregroundColor(Color("Dark-Cian"))
             
@@ -332,6 +256,52 @@ struct emailPass: View{
 }
 }
 
+struct BotonesRedes: View {
+    var body: some View {
+    
+        VStack{
+        
+        HStack {
+            Button(action: iniciarSesionFacebook, label: {
+                Text("Facebook").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
+        
+            }).padding(3)
+            
+            Button(action: iniciarSesionTwitter, label: {
+                Text("Twitter").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
+                
+            }).padding(3)
+            
+        }
+    
+        }
+        }
+}
+
+
+//Bloque de funciones
+
+
+func iniciarSesion() {
+    print("estoy iniciando sesion")
+}
+
+func iniciarSesionFacebook() {
+    print("estoy iniciando sesion con Facebook")
+
+}
+
+func iniciarSesionTwitter(){
+    print("estoy iniciando sesion con Twitter")
+
+}
+
+func tomarFoto() {
+}
+
+func registrate() {
+    print("te registraste")
+}
 
 
 struct ContentView_Previews: PreviewProvider {
