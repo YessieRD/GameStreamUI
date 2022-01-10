@@ -11,21 +11,23 @@ struct ContentView: View {
     var body: some View {
         
         
-        ZStack {
-            
-            Spacer()
-            
-            Color(red: 19/255, green: 29/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
-            
-            VStack{
+        NavigationView {
+            ZStack {
                 
-                Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 240).padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 43.0, trailing: 0.0))
+                Spacer()
                 
+                Color(red: 19/255, green: 29/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
                 
-                InicioYRegistroView()
-                
-                
-            }
+                VStack{
+                    
+                    Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 240).padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 43.0, trailing: 0.0))
+                    
+                    
+                    InicioYRegistroView()
+                    
+                    
+                }
+            }.navigationBarHidden(true)
         }
     }
 }
@@ -79,6 +81,7 @@ struct InicioYRegistroView:View {
 }
  
 struct InicioSesionView: View {
+    @State var isHomeActive = false
        
     var body: some View {
         
@@ -86,6 +89,7 @@ struct InicioSesionView: View {
 
      
         ScrollView {
+            
             
             VStack {
    
@@ -98,17 +102,31 @@ struct InicioSesionView: View {
                     Text("INICIAR SESIÓN").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 1.0).shadow(color: .white, radius: 6))
                 })
                 
-                Text("Incia sesión con redes sociales").foregroundColor(.white).frame(width: 300, height: 50, alignment: .center).padding(.top, 38)
+                Text("Incia sesión con redes sociales").foregroundColor(.white).font(.subheadline).frame(width: 300, height: 50, alignment: .center).padding(.top, 38)
                 
                 BotonesRedes()
              
                 
                 
             }.padding(.horizontal, 30.0)
+            
+            
+                NavigationLink(destination: Home(), isActive: $isHomeActive, label:{ EmptyView()
+                    
+                })
+            
+        
+            
         } //End Scroll view
         
         
         
+    }
+    
+    func iniciarSesion() {
+        print("estoy iniciando sesion")
+        
+        isHomeActive = true
     }
 }
 
@@ -228,7 +246,7 @@ struct EmailPass: View{
                  
                     }
                 
-                TextField("", text: $correo)
+                TextField("", text: $correo).foregroundColor(.white)
                 
                 
             }
@@ -248,7 +266,7 @@ struct EmailPass: View{
                  
                     }
         
-              SecureField("", text: $contraseña)
+                SecureField("", text: $contraseña).foregroundColor(.white)
         
             }
             Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 1)
@@ -282,9 +300,7 @@ struct BotonesRedes: View {
 //Bloque de funciones
 
 
-func iniciarSesion() {
-    print("estoy iniciando sesion")
-}
+
 
 func iniciarSesionFacebook() {
     print("estoy iniciando sesion con Facebook")
