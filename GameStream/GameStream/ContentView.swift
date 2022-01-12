@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         
-        
         NavigationView {
+            
             ZStack {
                 
-                Spacer()
+               Spacer()
                 
                 Color(red: 19/255, green: 29/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
                 
@@ -22,8 +22,7 @@ struct ContentView: View {
                     
                     Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 240).padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 43.0, trailing: 0.0))
                     
-                    
-                    InicioYRegistroView()
+                 InicioYRegistroView()
                     
                     
                 }
@@ -104,8 +103,24 @@ struct InicioSesionView: View {
                 
                 Text("Incia sesión con redes sociales").foregroundColor(.white).font(.subheadline).frame(width: 300, height: 50, alignment: .center).padding(.top, 38)
                 
-                BotonesRedes()
-             
+
+                
+                
+                
+                HStack {
+                    Button(action: iniciarSesionFacebook, label: {
+                        Text("Facebook").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
+                
+                    }).padding(3)
+                    
+                    Button(action: iniciarSesionTwitter, label: {
+                        Text("Twitter").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
+                        
+                    }).padding(3)
+                    
+                }
+                
+                
                 
                 
             }.padding(.horizontal, 30.0)
@@ -211,8 +226,18 @@ struct RegistroView:View {
                 
                 Text("Regístrate con redes sociales").foregroundColor(.white).frame(width: 350, height: 50, alignment: .center).padding(.top, 38)
                 
-              BotonesRedes()
+                HStack {
+                    Button(action: iniciarSesionFacebook, label: {
+                        Text("Facebook").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
                 
+                    }).padding(3)
+                    
+                    Button(action: iniciarSesionTwitter, label: {
+                        Text("Twitter").font(.subheadline).fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity,alignment: .center).padding(EdgeInsets(top: 9, leading: 35, bottom: 9, trailing: 35)).background(Color(red: 33/255, green: 48/255, blue: 79/255, opacity: 1.0)).clipShape(RoundedRectangle(cornerRadius: 4.0))
+                        
+                    }).padding(3)
+                    
+                }
               
           
                 
@@ -273,7 +298,7 @@ struct EmailPass: View{
         }
 }
 }
-
+/**
 struct BotonesRedes: View {
     var body: some View {
     
@@ -294,7 +319,7 @@ struct BotonesRedes: View {
     
         }
         }
-}
+}**/
 
 
 //Bloque de funciones
