@@ -27,9 +27,7 @@ struct Home: View {
                 }.tag(0)
             
             
-            Text("Pantalla Juegos")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .tabItem {
+                JuegosView()  .tabItem {
                 Image(systemName: "gamecontroller")
                     Text("Juegos")
                 }.tag(1)
@@ -109,7 +107,8 @@ struct PantallaHome: View{
                         
                         
                         
-                    }.padding([.top,.leading,.bottom], 11.0).background(Color("Blue-Bar"))
+                    }.padding([.top,.leading,.bottom], 11.0)
+                    .background(Color("Blue-Bar"))
                     .clipShape(Capsule())
                 
                 
@@ -151,6 +150,8 @@ struct SubModuloHome: View {
         
         
         VStack{
+            
+            
             Text("LOS MÁS POPULARES")
                 .font(.title3)
                 .foregroundColor(.white).bold()
@@ -267,7 +268,7 @@ struct SubModuloHome: View {
                                 .frame(width: 240, height: 135)
                         })
                     
-                    Button(action: {url = urlVideos[1]
+                    Button(action: {url = urlVideos[2]
                         print("URL: \(url)")
                         isPlayerActive = true}, label: {
                             
@@ -296,7 +297,47 @@ struct SubModuloHome: View {
             
             Text("VIDEOS QUE PODRIAN GUSTARTE").font(.title3).foregroundColor(.white).bold().frame(minWidth: 0, maxWidth: .infinity , alignment: .leading).padding(.top, 16)
 
-        
+            ScrollView(.horizontal,showsIndicators: false){
+                
+
+                HStack{
+                    
+                    Button(action: {url = urlVideos[4]
+                        print("URL: \(url)")
+                        isPlayerActive = true}, label: {
+                            
+                            Image("Cuphead")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 240, height: 135)
+                        })
+                    
+                    Button(action: {url = urlVideos[5]
+                        print("URL: \(url)")
+                        isPlayerActive = true}, label: {
+                            
+                            Image("Hades-2")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 240, height: 135)
+                        })
+                    
+                    Button(action: {url = urlVideos[6]
+                        print("URL: \(url)")
+                        isPlayerActive = true}, label: {
+                            
+                            Image("Grand Theft Auto V")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 240, height: 135)
+                        })
+                    
+                    
+                }
+
+
+            }
+            
         }
         
         
