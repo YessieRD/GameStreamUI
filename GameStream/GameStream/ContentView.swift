@@ -20,7 +20,7 @@ struct ContentView: View {
                 
                 VStack{
                     
-                    Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 240).padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 43.0, trailing: 0.0))
+                    Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 43.0, trailing: 0.0))
                     
                  InicioYRegistroView()
                     
