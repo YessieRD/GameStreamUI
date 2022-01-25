@@ -12,9 +12,7 @@ struct Home: View {
     
     @State var tabSeleccionado:Int = 2
     
-    
-    
-    var body: some View {
+        var body: some View {
         
         
         TabView(selection: $tabSeleccionado){
@@ -27,7 +25,8 @@ struct Home: View {
                 }.tag(0)
             
             
-                JuegosView()  .tabItem {
+            GamesView()
+                .tabItem {
                 Image(systemName: "gamecontroller")
                     Text("Juegos")
                 }.tag(1)
@@ -179,7 +178,10 @@ struct SubModuloHome: View {
                 })
                 
                 
-                Image(systemName: "play.circle.fill").resizable().foregroundColor(.white).frame(width: 43.0, height: 42.0)
+                Image(systemName: "play.circle.fill")
+                    .resizable()
+                    .foregroundColor(.white)
+                    .frame(width: 43.0, height: 42.0)
                 
             }.frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 .padding(.vertical)

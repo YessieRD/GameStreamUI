@@ -12,17 +12,17 @@ import Foundation
 
 struct Games:Codable {
     
-    var gmaes:[Game]
+    var game:[Game]
     
 }
 
 
-struct Game:Codable{
+struct Game:Codable,Hashable{
     
     var title:String
     var studio:String
-    var contentRating:String
-    var pubicationYear:String
+    var contentRaiting:String
+    var publicationYear:String
     var description:String
     var platforms:[String]
     var tags:[String]
@@ -31,7 +31,7 @@ struct Game:Codable{
 }
 
 
-struct videoUrl:Codable{
+struct videoUrl:Codable,Hashable{
     
     var mobile:String
     var tablet:String
