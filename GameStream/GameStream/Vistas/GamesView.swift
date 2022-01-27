@@ -13,7 +13,7 @@ struct GamesView: View {
     @ObservedObject var todosLosVideoJuegos = ViewModel()
     
 
-    @State var gamesviewIsActive: Bool = false
+    @State var gameviewIsActive: Bool = false
     @State var url:String = ""
     @State var titulo:String = ""
     @State var studio:String = ""
@@ -37,11 +37,11 @@ struct GamesView: View {
             Color("Marine").ignoresSafeArea()
             
             VStack{
-                Text("Juegos")
+              Text("Juegos")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    .padding(EdgeInsets(top: 16, leading: 0, bottom: 64, trailing: 10))
+                   .padding(EdgeInsets(top: 16, leading: 0, bottom: 64, trailing: 10))
                     
                 
              ScrollView{
@@ -66,7 +66,7 @@ struct GamesView: View {
                                 
                                 print("Pulse el juego \(titulo)")
                                 
-                                gamesviewIsActive = true
+                                gameviewIsActive = true
                                 
                                 
                             }, label: {
@@ -78,7 +78,8 @@ struct GamesView: View {
                                     .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .clipShape(RoundedRectangle.init(cornerRadius:  4))
-                                      
+                                    
+                                
                                         .padding(.bottom,12)
                                 
                                
@@ -93,15 +94,23 @@ struct GamesView: View {
                     
                     
                     
-                }
+             }.ignoresSafeArea()
                 
                 
             }.padding(.horizontal,6)
             
             
-        }.navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
-            .onAppear(perform: {
+            NavigationLink(
+                destination: GameView(url: url, titulo: titulo, studio: studio, calificacion: calificacion, anoPublicacion: anoPublicacion, descripcion: descripcion, tags: tags, imgsUrl: imgsUrl),
+            isActive: $gameviewIsActive,
+                label: {
+                    EmptyView()
+                })
+            
+        }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {
                 
                     print("Primer Elemento del json:\(todosLosVideoJuegos.gamesInfo[0])")
                 

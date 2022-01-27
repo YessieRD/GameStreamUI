@@ -14,7 +14,7 @@ struct Home: View {
     
         var body: some View {
         
-        
+           
         TabView(selection: $tabSeleccionado){
             
             Text("Perfil")
@@ -33,14 +33,15 @@ struct Home: View {
             
             
             
-           PantallaHome().tabItem {
+           PantallaHome()
+                .tabItem {
                 Image(systemName: "house")
                     Text("Inicio")
             }.tag(2)
             
             
             Text("Favoritos")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .font(.system(size: 30, weight: .bold, design: .rounded)).padding(.top,1)
                 .tabItem {
                 Image(systemName: "heart")
                     Text("Favoritos")
@@ -49,79 +50,79 @@ struct Home: View {
         }
         .accentColor(.white)
 
-
-
-        
-        
     }
-    
+
   init(){
-        
-  
+
+
        UITabBar.appearance().barTintColor = UIColor (Color("tabBarColor"))
     UITabBar.appearance().isTranslucent = true
-    
-                print("Iniciando las vistas de home")
-                
             }
     
     
 }
 
 
-struct PantallaHome: View{
+struct PantallaHome: View {
     
     @State var textoBusqueda:String  = ""
     
     var body: some View{
         
+        
+
         ZStack {
-            
-            Color("Marine").ignoresSafeArea()
-            
-            
-            VStack {
                 
-                Image("appLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.vertical, 11.0)
+                Color("Marine").ignoresSafeArea()
                 
                 
+            VStack{
+                                
+                Image("appLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250)
+                    .padding(.bottom, 11)
+                    .padding(.top, 0)
+                                        
+                
+                //Pasar a SubModuloHOME
                     HStack{
-                    
-                        Button(action: busqueda, label: {
-                            Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("Dark-Cian"))
-                            
-                        })
                         
-                        
-                        ZStack(alignment: .leading){
+                            Button(action: busqueda, label: {
+                                Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("Dark-Cian"))
+                                
+                            })
                             
-                            if textoBusqueda.isEmpty{
-                                Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                            
+                            ZStack(alignment: .leading){
+                                
+                                if textoBusqueda.isEmpty{
+                                    Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                                    
+                                }
+                                
+                                TextField("", text: $textoBusqueda).foregroundColor(.white)
                                 
                             }
                             
-                            TextField("", text: $textoBusqueda).foregroundColor(.white)
                             
-                        }
-                        
-                        
-                        
-                    }.padding([.top,.leading,.bottom], 11.0)
-                    .background(Color("Blue-Bar"))
-                    .clipShape(Capsule())
+                            
+                        }.padding([.top,.leading,.bottom], 11.0)
+                        .background(Color("Blue-Bar"))
+                        .clipShape(Capsule())
+                    
+                    
+                    ScrollView(showsIndicators: false){
+                        SubModuloHome()
+                    }
+                    
+                }.padding(.horizontal, 18.0).frame(maxWidth: .infinity,maxHeight: .infinity)
                 
                 
-                ScrollView(showsIndicators: false){
-                    SubModuloHome()
-                }
-                
-            }.padding(.horizontal, 18.0)
-            
-            
-            
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
         
-
+       
     }
     
     
