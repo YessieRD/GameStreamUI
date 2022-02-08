@@ -9,6 +9,11 @@ import Foundation
 
 
 
+struct Resultado: Codable{
+    
+    var results:[Game]
+}
+
 
 struct Games:Codable {
     

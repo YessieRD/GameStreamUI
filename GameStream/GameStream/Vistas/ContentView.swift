@@ -9,45 +9,35 @@ import SwiftUI
 
 struct ContentView: View {
     
+    
     var body: some View {
         
         NavigationView {
             
             ZStack {
                                 
-                Color(red: 19/255, green: 29/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
-                
-                VStack{
-                    
-                  //  Spacer() //comp added
-                    
+                Color("Marine").ignoresSafeArea()
+
+                VStack {
+                                        
                     Image("appLogo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
                         .padding(.bottom, 50.0)
-                        .padding(.top, 15)
+                        .padding(.top, 44)
 
                 InicioYRegistroView()
-          
-                    
-                //DEBUG
-//                    Button("Home"){
-//                        isHomeActive = true
-//                    }
-//
-//                    NavigationLink(
-//                        destination: Home(),
-//                        isActive: $isHomeActive,
-//                        label:{ EmptyView()
-//
-//                        })
-                    
-                    
+        
                 }
-                
-                
-            }.navigationBarHidden(true)
+            }
+ //            .navigationBarTitle("", displayMode: .inline)
+             .navigationBarTitle("")
+             .navigationBarHidden(true)
+             .navigationBarBackButtonHidden(true)
+           
+
+
         }
     }
 }

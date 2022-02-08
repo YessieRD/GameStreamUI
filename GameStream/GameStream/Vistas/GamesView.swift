@@ -14,6 +14,7 @@ struct GamesView: View {
     
 
     @State var gameviewIsActive: Bool = false
+    
     @State var url:String = ""
     @State var titulo:String = ""
     @State var studio:String = ""
@@ -37,11 +38,12 @@ struct GamesView: View {
             Color("Marine").ignoresSafeArea()
             
             VStack{
-              Text("Juegos")
+              Text("JUEGOS")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                   .padding(EdgeInsets(top: 16, leading: 0, bottom: 64, trailing: 10))
+                    .padding(.bottom,9)
+                   .padding(EdgeInsets(top: 0, leading: 0, bottom: 25 , trailing: 10))
                     
                 
              ScrollView{
@@ -97,7 +99,8 @@ struct GamesView: View {
              }.ignoresSafeArea()
                 
                 
-            }.padding(.horizontal,6)
+            }
+            .padding(.horizontal,6)
             
             
             NavigationLink(
@@ -108,8 +111,7 @@ struct GamesView: View {
                 })
             
         }
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
+        
         .onAppear(perform: {
                 
                     print("Primer Elemento del json:\(todosLosVideoJuegos.gamesInfo[0])")

@@ -40,25 +40,25 @@ struct Home: View {
             }.tag(2)
             
             
-            Text("Favoritos")
-                .font(.system(size: 30, weight: .bold, design: .rounded)).padding(.top,1)
+            FavoritesView()
                 .tabItem {
                 Image(systemName: "heart")
                     Text("Favoritos")
-                }.tag(3)
-                      
-        }
-        .accentColor(.white)
+            }.tag(3)
+                                  
+            }.accentColor(.white)
 
     }
 
-  init(){
+    init(){
 
 
-       UITabBar.appearance().barTintColor = UIColor (Color("tabBarColor"))
+    UITabBar.appearance().barTintColor = UIColor (Color("tabBarColor"))
     UITabBar.appearance().isTranslucent = true
-            }
+        
     
+    }
+                
     
 }
 
@@ -66,7 +66,8 @@ struct Home: View {
 struct PantallaHome: View {
     
     @State var textoBusqueda:String  = ""
-    
+
+
     var body: some View{
         
         
@@ -87,41 +88,23 @@ struct PantallaHome: View {
                                         
                 
                 //Pasar a SubModuloHOME
-                    HStack{
-                        
-                            Button(action: busqueda, label: {
-                                Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("Dark-Cian"))
-                                
-                            })
-                            
-                            
-                            ZStack(alignment: .leading){
-                                
-                                if textoBusqueda.isEmpty{
-                                    Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
-                                    
-                                }
-                                
-                                TextField("", text: $textoBusqueda).foregroundColor(.white)
-                                
-                            }
-                            
-                            
-                            
-                        }.padding([.top,.leading,.bottom], 11.0)
-                        .background(Color("Blue-Bar"))
-                        .clipShape(Capsule())
-                    
+                 
                     
                     ScrollView(showsIndicators: false){
                         SubModuloHome()
-                    }
+                    }  
                     
-                }.padding(.horizontal, 18.0).frame(maxWidth: .infinity,maxHeight: .infinity)
-                
-                
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
-        
+                    
+            }
+            .padding(.bottom, 8)
+            .padding(.horizontal, 18.0)
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            
+        }
+          .navigationBarTitle("", displayMode: .inline)
+//        //.navigationBarTitle("")
+          .navigationBarHidden(true)
+          .navigationBarBackButtonHidden(true)
        
     }
     
@@ -138,11 +121,30 @@ struct PantallaHome: View {
 
 struct SubModuloHome: View {
     
-    @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
+    @State var isGameInfoEmpty  = false
+    @State var textoBusqueda:String  = ""
     
-    @State var isPlayerActive = false
+    @ObservedObject var juegoEncontrado = SearchGame()
+    @State var isGameViewActive = false
     
-    let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
+    @State var url:String = ""
+    @State var titulo:String = ""
+    @State var studio:String = ""
+    @State var calificacion:String = ""
+    @State var anoPublicacion:String = ""
+    @State var descripcion:String = ""
+    @State var tags:[String] = [""]
+    @State var imgsUrl:[String] = [""]
+    
+    
+    
+//
+//
+//    @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
+//
+//    @State var isPlayerActive = false
+//
+//    let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
     
     var body: some View{
         
@@ -150,6 +152,42 @@ struct SubModuloHome: View {
         
         
         VStack{
+            
+            
+            HStack{
+                
+                Button(action: {
+                    
+                    watchGame(name:textoBusqueda)
+                    
+                    
+                    
+                }, label: {
+                        Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? Color(.yellow) : Color("Dark-Cian"))
+                        
+                }).alert(isPresented: $isGameInfoEmpty){
+                   
+                    Alert(title: Text("Error"), message: Text("No se encontró el Juego"), dismissButton: .default(Text("Entendido")))
+                }
+                    
+                    
+                    ZStack(alignment: .leading){
+                        
+                        if textoBusqueda.isEmpty{
+                            Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                            
+                        }
+                        
+                        TextField("", text: $textoBusqueda).foregroundColor(.white)
+                        
+                    }
+                    
+                    
+                    
+                }
+            .padding([.top,.leading,.bottom], 11.0)
+                .background(Color("Blue-Bar"))
+                .clipShape(Capsule())
             
             
             Text("LOS MÁS POPULARES")
@@ -162,9 +200,7 @@ struct SubModuloHome: View {
             ZStack{
                 
                 
-                Button(action: { url = urlVideos[0]
-                    print("URL: \(url)")
-                    isPlayerActive = true
+                Button(action: {watchGame(name: "The Witcher 3")
                 }, label: {
                     
                      
@@ -184,7 +220,8 @@ struct SubModuloHome: View {
                     .foregroundColor(.white)
                     .frame(width: 43.0, height: 42.0)
                 
-            }.frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 .padding(.vertical)
             
             
@@ -261,9 +298,7 @@ struct SubModuloHome: View {
 
                 HStack{
                     
-                    Button(action: {url = urlVideos[1]
-                        print("URL: \(url)")
-                        isPlayerActive = true}, label: {
+                    Button(action: {watchGame(name: "Abzu")}, label: {
                             
                             Image("Abzu")
                                 .resizable()
@@ -271,9 +306,7 @@ struct SubModuloHome: View {
                                 .frame(width: 240, height: 135)
                         })
                     
-                    Button(action: {url = urlVideos[2]
-                        print("URL: \(url)")
-                        isPlayerActive = true}, label: {
+                    Button(action: {watchGame(name: "Crash Bandicoot")}, label: {
                             
                             Image("Crash Bandicoot")
                                 .resizable()
@@ -281,9 +314,7 @@ struct SubModuloHome: View {
                                 .frame(width: 240, height: 135)
                         })
                     
-                    Button(action: {url = urlVideos[3]
-                        print("URL: \(url)")
-                        isPlayerActive = true}, label: {
+                    Button(action: {watchGame(name: "DEATH STRANDING")}, label: {
                             
                             Image("DEATH STRANDING")
                                 .resizable()
@@ -305,9 +336,7 @@ struct SubModuloHome: View {
 
                 HStack{
                     
-                    Button(action: {url = urlVideos[4]
-                        print("URL: \(url)")
-                        isPlayerActive = true}, label: {
+                    Button(action: {watchGame(name: "Cuphead")}, label: {
                             
                             Image("Cuphead")
                                 .resizable()
@@ -315,9 +344,7 @@ struct SubModuloHome: View {
                                 .frame(width: 240, height: 135)
                         })
                     
-                    Button(action: {url = urlVideos[5]
-                        print("URL: \(url)")
-                        isPlayerActive = true}, label: {
+                    Button(action: {watchGame(name: "Hades-2")}, label: {
                             
                             Image("Hades-2")
                                 .resizable()
@@ -325,9 +352,7 @@ struct SubModuloHome: View {
                                 .frame(width: 240, height: 135)
                         })
                     
-                    Button(action: {url = urlVideos[6]
-                        print("URL: \(url)")
-                        isPlayerActive = true}, label: {
+                    Button(action: {watchGame(name: "Grand Theft Auto V")}, label: {
                             
                             Image("Grand Theft Auto V")
                                 .resizable()
@@ -345,14 +370,42 @@ struct SubModuloHome: View {
         
         
         NavigationLink(
-            destination: VideoPlayer(player:
-                AVPlayer(url: URL(string: url)!))
-                .frame(width: 400, height: 300)
+            destination: GameView(url:url, titulo:titulo, studio:studio, calificacion:calificacion, anoPublicacion:anoPublicacion, descripcion:descripcion, tags:tags, imgsUrl: imgsUrl)
               ,
-            isActive: $isPlayerActive,
+            isActive: $isGameViewActive,
             label: {
                 EmptyView()
             })
+    
+    }
+    
+    func watchGame(name:String){
+     
+        juegoEncontrado.search(gameName: name)
+        
+        //dice que no es recomendado
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3){
+            
+            print("Cantidad E: \(juegoEncontrado.gameInfo.count)")
+            
+            if juegoEncontrado.gameInfo.count == 0 {
+                
+                isGameInfoEmpty = true
+            }else{
+                
+                url = juegoEncontrado.gameInfo[0].videosUrls.mobile
+                titulo = juegoEncontrado.gameInfo[0].title
+                studio = juegoEncontrado.gameInfo[0].studio
+                calificacion = juegoEncontrado.gameInfo[0].contentRaiting
+                anoPublicacion = juegoEncontrado.gameInfo[0].publicationYear
+                descripcion = juegoEncontrado.gameInfo[0].description
+                tags = juegoEncontrado.gameInfo[0].tags
+                imgsUrl = juegoEncontrado.gameInfo[0].galleryImages
+                
+                isGameViewActive = true
+            }
+        }
         
         
         
