@@ -20,8 +20,7 @@ struct ContentView: View {
 
                 VStack {
                                         
-                    Image("appLogo")
-                        .resizable()
+                    Image("appLogo").resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
                         .padding(.bottom, 50.0)
@@ -30,11 +29,7 @@ struct ContentView: View {
                 InicioYRegistroView()
         
                 }
-            }
- //            .navigationBarTitle("", displayMode: .inline)
-             .navigationBarTitle("")
-             .navigationBarHidden(true)
-             .navigationBarBackButtonHidden(true)
+            }.navigationBarHidden(true)
            
 
 
@@ -54,7 +49,7 @@ struct InicioYRegistroView:View {
 
             HStack{
 
-                Button("INICIA SESIÓN") {
+                Button("INICIAR SESIÓN") {
                 tipoInicioSesion = true
                     print("Pantalla Inicio Sesion")
                 }
@@ -65,7 +60,6 @@ struct InicioYRegistroView:View {
 
                  Button("REGÍSTRATE") {
                      tipoInicioSesion = false
-
                   print("Pantalla de Registro")
                   }
                  .foregroundColor(tipoInicioSesion ? .gray : .white)
@@ -75,27 +69,26 @@ struct InicioYRegistroView:View {
             } .padding(.horizontal, 30)
 
 
-            if tipoInicioSesion == true {
+            if (tipoInicioSesion) {
                 InicioSesionView()
             }else{
                 RegistroView()
             }
-    }
-}
+      }
+   }
 }
 
 
 
 struct InicioSesionView: View {
 
-    @State var isHomeActive:Bool = false
     @State var correo:String = ""
     @State var contraseña:String = ""
-
+    @State var isHomeActive:Bool = false
 
     var body: some View {
 
-        Spacer(minLength: 63)
+     //   Spacer(minLength: 63)// FIXED SIW
 
         ScrollView {
 
@@ -143,10 +136,11 @@ struct InicioSesionView: View {
 
                         }
 
-                Divider().frame(height: 1)
+                Divider()
+                .frame(height: 1)
                 .background(Color("Dark-Cian"))
                 .padding(.bottom, 5)
-                }
+           //     } // FIXED SIW
 
 
                 Text("Olvidaste tu contraseña?")
@@ -156,7 +150,8 @@ struct InicioSesionView: View {
                     .padding(.bottom, 65)
 
 
-                Button(action: iniciarSesion, label: {
+                Button(action: iniciarSesion)//, label: //FIXED SIW
+                    {
                     Text("INICIAR SESIÓN")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -165,7 +160,7 @@ struct InicioSesionView: View {
                         .overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 1.0)
                                     .shadow(color: .white, radius: 6))
 
-                }).padding(10.0) //added comp
+                }.padding(10.0) //added comp
 
 
 
@@ -180,7 +175,8 @@ struct InicioSesionView: View {
 
                 HStack {
 
-                    Button(action: iniciarSesionFacebook, label: {
+                   // Button(action: iniciarSesionFacebook, label: {// FIXED SIW
+                        Button(action: {print("inicio de sesion con Facebook")}) {
                         Text("Facebook")
                             .font(.subheadline)
                             .fontWeight(.bold)
@@ -190,9 +186,10 @@ struct InicioSesionView: View {
                             .background(Color("Blue-Bar"))
                             .clipShape(RoundedRectangle(cornerRadius: 4.0))
 
-                    }).padding(3)
+                    }.padding(3)
 
-                    Button(action: iniciarSesionTwitter, label: {
+                  //  Button(action: iniciarSesionTwitter, label: {// FIXED SIW
+                    Button(action: {print("Inicio de sesión con Twitter")}) {
                         Text("Twitter")
                             .font(.subheadline)
                             .fontWeight(.bold)
@@ -202,7 +199,7 @@ struct InicioSesionView: View {
                             .background(Color("Blue-Bar"))
                             .clipShape(RoundedRectangle(cornerRadius: 4.0))
 
-                    }).padding(3)
+                    }.padding(3)
 
                 }.padding(10.0)
 
@@ -219,14 +216,27 @@ struct InicioSesionView: View {
         }//End Scroll view
         }
 
-
-    func iniciarSesion() {
-        print("Estoy iniciando sesion")
-
-        isHomeActive = true
     }
+    func iniciarSesion() {
+        
+        
+      //  let objetoDatosUsuario = SaveData()//
+                
+                 print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
+             /* if objetoDatosUsuario.validar(correo: correo, contrasena: contraseña){
+              isPantallaHomeActive.toggle()
+          }else{
+              //Comentar linea de abajo para habilitar funcionalidad de validacion de usuario.
+              isPantallaHomeActive.toggle()
+              print("Tus datos son incorrectos")
+              
+          }*/
+                
 
-}
+                    
+            }
+            
+            
 
 
 // Pantalla 2
@@ -239,11 +249,9 @@ struct RegistroView:View {
 
     var body: some View{
 
-       Spacer(minLength: 32)
+       //Spacer(minLength: 32)//FIXED SIW
 
         ScrollView {
-
-            VStack{
 
         VStack(alignment:.center){
 
@@ -279,6 +287,8 @@ struct RegistroView:View {
 
 
             VStack(alignment: .leading) {
+                
+                VStack{
 
                 Text("Correo electrónico*")
                         .foregroundColor(Color("Dark-Cian"))
@@ -303,7 +313,7 @@ struct RegistroView:View {
 
 
 
-                Text("Contraseña*")
+                Text("Contraseña")
                         .foregroundColor(Color("Dark-Cian"))
 
 
@@ -351,7 +361,8 @@ struct RegistroView:View {
                 }
 
 
-                Button(action: registrate, label: {
+             //   Button(action: registrate, label: { //FIXED SIW
+                Button(action: registrarse) {
 
                     Text("REGÍSTRATE")
                         .fontWeight(.bold)
@@ -361,7 +372,7 @@ struct RegistroView:View {
                         .overlay(RoundedRectangle(cornerRadius: 6.0)
                         .stroke(Color("Dark-Cian"),lineWidth: 1.0)
                         .shadow(color: .white, radius: 6))
-                }).padding(.horizontal, 10.0 )
+                }.padding(.horizontal, 10.0 )
 
 
                 Text("Regístrate con redes sociales")
@@ -371,7 +382,8 @@ struct RegistroView:View {
 
             HStack {
 
-                Button(action: iniciarSesionFacebook, label: {
+               // Button(action: iniciarSesionFacebook, label: { //FIXED SIW
+                Button(action: {print("Inicio de sesión con Facebook")}) {
                     Text("Facebook")
                         .font(.subheadline)
                         .fontWeight(.bold)
@@ -381,9 +393,10 @@ struct RegistroView:View {
                         .background(Color("Blue-Bar"))
                         .clipShape(RoundedRectangle(cornerRadius: 4.0))
 
-                }).padding(10.0)
+                }.padding(10.0)
 
-                Button(action: iniciarSesionTwitter, label: {
+               //Button(action: iniciarSesionTwitter, label: {//FIXED SIW
+                Button(action: {print("Inicio de sesión con Twitter")}) {
                     Text("Twitter")
                         .font(.subheadline)
                         .fontWeight(.bold)
@@ -393,7 +406,7 @@ struct RegistroView:View {
                         .background(Color("Blue-Bar"))
                         .clipShape(RoundedRectangle(cornerRadius: 4.0))
 
-                }).padding(3)
+                }.padding(3)
 
             }
 
@@ -406,7 +419,6 @@ struct RegistroView:View {
 
 
     }
-}
 
 
 func iniciarSesionFacebook() {
@@ -424,7 +436,7 @@ func tomarFoto() {
      //logica de tomar fotos.
  }
 
- func registrate() {
+ func registrarse() {
      print("Me registro con el correo ")
  }
 
