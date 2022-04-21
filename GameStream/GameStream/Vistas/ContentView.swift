@@ -72,7 +72,7 @@ struct InicioYRegistroView:View {
             if (tipoInicioSesion) {
                 InicioSesionView()
             }else{
-                RegistroView()
+                InicioYRegistroView()
             }
       }
    }
@@ -437,13 +437,19 @@ func tomarFoto() {
  }
 
  func registrarse() {
-     print("Me registro con el correo ")
- }
+     print("Me registro con el correo \(correo),la contraseña \(contraseña) y confirmación de contraseña \(confirmacionContraseña)") }
+         
+        
+     }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
-            ContentView()
+        Group {
+                    ContentView()
+            InicioSesionView().background(Color(red: 18/255, green: 31/255, blue: 61/255, opacity: 100).ignoresSafeArea())
+                }
         
     }
 }
