@@ -17,8 +17,7 @@ struct Home: View {
            
         TabView(selection: $tabSeleccionado){
             
-            Text("Perfil")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
+            ProfileView()
                 .tabItem {
                 Image(systemName: "person")
                     Text("Perfil")
