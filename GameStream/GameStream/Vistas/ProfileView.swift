@@ -30,7 +30,6 @@ struct ProfileView: View {
                            alignment: .center)
                     .padding()
                 
-                
                 VStack{
                     
                     Image("perfilejemplo").resizable()
