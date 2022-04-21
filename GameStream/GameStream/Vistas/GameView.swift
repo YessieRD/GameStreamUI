@@ -40,11 +40,7 @@ struct GameView: View {
                     .padding(.bottom)
                 
                 Gallery(imgsUrl:imgsUrl)
-                
-                Comentario()
-                
-                JuegosSimilares()
-                
+                                                
             }.frame(maxWidth: .infinity).ignoresSafeArea()
             //.edgesIgnoringSafeArea(.all)
         }
@@ -67,6 +63,7 @@ struct video:View{
 
 struct videoInfo:View{
     
+    @State var isGameSaved = false
     var titulo:String
     var studio:String
     var calificacion:String
@@ -79,12 +76,24 @@ struct videoInfo:View{
     
         VStack(alignment: .leading){
             
+            HStack {
+
             Text("\(titulo)")
             .foregroundColor(.white)
             .font(.largeTitle)
             .bold()
             .padding(.leading)
-            
+                Spacer()
+                               
+Button(action: {
+ isGameSaved = true}, label: {
+  Image(systemName: "heart.fill").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18).foregroundColor(.white).padding()
+ }).alert(isPresented: $isGameSaved) {
+    Alert(title: Text("Guardado"), message: Text("El juego \(titulo) se guardo exitosamente"), dismissButton: .default(Text("Entendido")))
+      }
+                               
+                               
+                           }
             HStack{
                 Text("\(studio)")
                 .foregroundColor(.white)
@@ -144,7 +153,8 @@ struct Gallery: View{
     
     var body: some View{
         
-        
+        VStack(alignment: .leading){
+
         Text("GALERÍA")
             .font(.title3)
             .foregroundColor(.white)
@@ -177,7 +187,7 @@ struct Gallery: View{
     }
     
 }
-
+}
 
 struct Comentario: View{
 

@@ -11,10 +11,7 @@ import Kingfisher
 struct GamesView: View {
     
     @ObservedObject var todosLosVideoJuegos = ViewModel()
-    
-
     @State var gameviewIsActive: Bool = false
-    
     @State var url:String = ""
     @State var titulo:String = ""
     @State var studio:String = ""
@@ -66,7 +63,7 @@ struct GamesView: View {
                                 tags = juego.tags
                                 imgsUrl = juego.galleryImages
                                 
-                                print("Pulse el juego \(titulo)")
+                             //   print("Pulse el juego \(titulo)")// FIXED SIW
                                 
                                 gameviewIsActive = true
                                 
@@ -110,9 +107,9 @@ struct GamesView: View {
                     EmptyView()
                 })
             
-        }
+        }.navigationBarHidden(true).navigationBarBackButtonHidden(true).onAppear(perform: {
         
-        .onAppear(perform: {
+       // .onAppear(perform: {//FIXED SIW
                 
                     print("Primer Elemento del json:\(todosLosVideoJuegos.gamesInfo[0])")
                 
@@ -123,10 +120,11 @@ struct GamesView: View {
 }
 
 
-
+/*
 
 struct GamesView_Previews: PreviewProvider {
     static var previews: some View {
         GamesView()
     }
 }
+*/

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    
+
     var body: some View {
         
         NavigationView {
@@ -20,7 +19,7 @@ struct ContentView: View {
 
                 VStack {
                                         
-                    Image("appLogo").resizable()
+                    Image("AppLogo").resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
                         .padding(.bottom, 50.0)
@@ -72,13 +71,11 @@ struct InicioYRegistroView:View {
             if (tipoInicioSesion) {
                 InicioSesionView()
             }else{
-                InicioYRegistroView()
+                RegistroView()
             }
       }
    }
 }
-
-
 
 struct InicioSesionView: View {
 
@@ -165,7 +162,7 @@ struct InicioSesionView: View {
 
 
 
-                Text("Inicia sesión con redes sociales")
+                Text("Iniciar sesión con redes sociales")
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50, alignment: .center)
                     .padding(.top, 36)
@@ -175,8 +172,8 @@ struct InicioSesionView: View {
 
                 HStack {
 
-                   // Button(action: iniciarSesionFacebook, label: {// FIXED SIW
-                        Button(action: {print("inicio de sesion con Facebook")}) {
+                   //Button(action: iniciarSesionFacebook, label: {//
+                       Button(action: {print("inicio de sesion con Facebook")}) {
                         Text("Facebook")
                             .font(.subheadline)
                             .fontWeight(.bold)
@@ -217,27 +214,27 @@ struct InicioSesionView: View {
         }
 
     }
+    
     func iniciarSesion() {
-        
-        
-      //  let objetoDatosUsuario = SaveData()//
                 
-                 print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
-             /* if objetoDatosUsuario.validar(correo: correo, contrasena: contraseña){
-              isPantallaHomeActive.toggle()
-          }else{
-              //Comentar linea de abajo para habilitar funcionalidad de validacion de usuario.
-              isPantallaHomeActive.toggle()
-              print("Tus datos son incorrectos")
-              
-          }*/
-                
-
-                    
-            }
+         print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
+        
+        isHomeActive.toggle()
+        
+        /* if objetoDatosUsuario.validar(correo: correo, contrasena: contraseña){
+                      isPantallaHomeActive.toggle()
+                  }else{
+                      //Comentar linea de abajo para habilitar funcionalidad de validacion de usuario.
+                      isPantallaHomeActive.toggle()
+                      print("Tus datos son incorrectos")
+                      
+                  }*/
+                        
             
-            
-
+    }
+    
+    
+}
 
 // Pantalla 2
 
@@ -286,9 +283,9 @@ struct RegistroView:View {
 
 
 
-            VStack(alignment: .leading) {
+            VStack {
                 
-                VStack{
+                VStack(alignment: .leading){
 
                 Text("Correo electrónico*")
                         .foregroundColor(Color("Dark-Cian"))
@@ -419,40 +416,30 @@ struct RegistroView:View {
 
 
     }
-
-
-func iniciarSesionFacebook() {
- print("estoy iniciando sesion con Facebook")
-
-}
-
-func iniciarSesionTwitter(){
- print("estoy iniciando sesion con Twitter")
-
-}
-
-func tomarFoto() {
-     print("Tomo foto")
-     //logica de tomar fotos.
- }
-
- func registrarse() {
-     print("Me registro con el correo \(correo),la contraseña \(contraseña) y confirmación de contraseña \(confirmacionContraseña)") }
-         
+    
+    func tomarFoto()  {
+        print("Tomo foto")
+        //logica de tomar fotos.
+    }
+    
+    func registrarse()  {
         
-     }
+        print("Me registro con el correo \(correo), la contraseña \(contraseña) y confirmación de contraseña \(confirmacionContraseña)")
+    
+        //Logica de validación
+        
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
+     
         Group {
-                    ContentView()
+            ContentView()
             InicioSesionView().background(Color(red: 18/255, green: 31/255, blue: 61/255, opacity: 100).ignoresSafeArea())
-                }
+        }
         
     }
 }
-        
-       
-

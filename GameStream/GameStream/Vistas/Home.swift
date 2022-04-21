@@ -79,7 +79,7 @@ struct PantallaHome: View {
                 
             VStack{
                                 
-                Image("appLogo")
+                Image("AppLogo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250)
