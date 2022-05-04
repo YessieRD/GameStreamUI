@@ -22,6 +22,9 @@ struct ProfileView: View {
             
             VStack{
                 
+                
+                VStack{
+                    
                 Text("Perfil")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -30,7 +33,6 @@ struct ProfileView: View {
                            alignment: .center)
                     .padding()
                 
-                VStack{
                     
                     Image("perfilejemplo").resizable()
                         .aspectRatio(contentMode: .fill)
@@ -42,14 +44,14 @@ struct ProfileView: View {
                 
                 
                 Text("Ajustes")
-                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity,
                            alignment: .leading)
-                    .padding(.leading,18)
+                    .padding(.leading,17)
         
             ModuloAjustes()
+                Spacer()
             
         }.onAppear(
         
@@ -60,8 +62,7 @@ struct ProfileView: View {
         )
         
         
-        
-        
+            
         
         
         
@@ -71,12 +72,93 @@ struct ProfileView: View {
 
 
 struct ModuloAjustes: View{
+    
+    @State var isToggleOn = true
+    @State var isEditProfileViewActive = false
+    
     var body: some View{
         
-        Text("Hola")
+        
+        VStack(spacing: 3){
+            
+            Button(action: {}, label: {
+                
+                HStack{
+                    Text("Cuenta")
+                    .foregroundColor(.white)
+                    
+                    Spacer()
+                    
+                    Text(">").foregroundColor(.white)
+                    
+                }.padding()
+            }).background(Color("Blue-Gray"))
+                .clipShape(RoundedRectangle(cornerRadius: 1.0))
+                
+        
+            
+            Button(action: {}, label: {
+                
+            
+                HStack{
+                    Text("Notificaciones")
+                    .foregroundColor(.white)
+                    
+                    Spacer()
+                    
+                    Toggle("", isOn: $isToggleOn).foregroundColor(.white)
+                    
+                }.padding()
+            }).background(Color("Blue-Gray"))
+                .clipShape(RoundedRectangle(cornerRadius: 1.0))
+            
+            
+            Button(action: {
+                isEditProfileViewActive = true},
+                   label: {
+                HStack{
+                    Text("Editar Perfil")
+                    .foregroundColor(.white)
+                    
+                    Spacer()
+                    
+                    Text(">").foregroundColor(.white)
+                    
+                }.padding()
+            }).background(Color("Blue-Gray"))
+                .clipShape(RoundedRectangle(cornerRadius: 1.0))
+                
+            Button(action: {}, label: {
+                
+                
+                HStack{
+                    Text("Califica esta aplicación")
+                    .foregroundColor(.white)
+                    
+                    Spacer()
+                    
+                    Text(">").foregroundColor(.white)
+                    
+                }.padding()
+            }).background(Color("Blue-Gray"))
+                .clipShape(RoundedRectangle(cornerRadius: 1.0))
+            
+            
+            NavigationLink(
+                            destination: EditProfileView(),
+                            isActive: $isEditProfileViewActive,
+                            label: {
+                                EmptyView()
+                            })
+    
+        }
+        
     }
     
 }
+
+
+
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
