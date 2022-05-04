@@ -222,10 +222,10 @@ struct InicioSesionView: View {
         isHomeActive.toggle()
         
         /* if objetoDatosUsuario.validar(correo: correo, contrasena: contraseña){
-                      isPantallaHomeActive.toggle()
+                      isHomeActive.toggle()
                   }else{
                       //Comentar linea de abajo para habilitar funcionalidad de validacion de usuario.
-                      isPantallaHomeActive.toggle()
+                      isHomeActive.toggle()
                       print("Tus datos son incorrectos")
                       
                   }*/
@@ -423,6 +423,15 @@ struct RegistroView:View {
     }
     
     func registrarse()  {
+        
+                    
+     /*       let objetoRegistrarDatos = SaveData()
+            
+            let resultado = objetoRegistrarDatos
+            .guardarDatos(correo: correo, contraseña: contraseña, name: String)
+        
+       
+        print("se guardandolos datos con exito? \(resultado)")  */
         
         print("Me registro con el correo \(correo), la contraseña \(contraseña) y confirmación de contraseña \(confirmacionContraseña)")
     

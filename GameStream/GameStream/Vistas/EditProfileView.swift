@@ -43,6 +43,9 @@ struct EditProfileView: View {
     }
 
 }
+
+
+
 struct ModuloEditar: View {
     
     @State var correo: String = ""
@@ -80,7 +83,7 @@ struct ModuloEditar: View {
 
 
                  Text("Contraseña")
-                         .foregroundColor(Color("Dark-Cian"))
+                         .foregroundColor(Color(.white))
 
 
                  ZStack(alignment: .leading){
@@ -98,11 +101,11 @@ struct ModuloEditar: View {
 
                      Divider()
                          .frame(height: 1)
-                         .background(Color("Dark-Cian"))
+                         .background(Color(.white))
                          .padding(.bottom)
 
              Text("Nombre")
-                     .foregroundColor(Color("Dark-Cian"))
+                     .foregroundColor(Color(.white))
 
 
              ZStack(alignment: .leading){
@@ -119,7 +122,7 @@ struct ModuloEditar: View {
 
              Divider()
                  .frame(height: 1)
-                 .background(Color("Dark-Cian"))
+                 .background(Color(.white))
                  .padding(.bottom, 32)
 
                 
@@ -144,7 +147,12 @@ struct ModuloEditar: View {
  
     func actualizarDatos() {
         
-        print("Guardando y recueperando datos del usuario")
+        let objetoActualizadorDatos = SaveData()
+        
+        let resultado = objetoActualizadorDatos
+            .guardarDatos(correo: correo, contraseña: contraseña, nombre: nombre)
+        
+    print("se guardandolos datos con exito? \(resultado)")
     }
 }
 
