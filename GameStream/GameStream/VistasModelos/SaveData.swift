@@ -74,7 +74,7 @@ class SaveData {
             
             contraseñaGuardada = UserDefaults.standard.stringArray(forKey: "datosUsuario")![1]
             
-            print("El correo gaurdado es \(correoGuardado) y la contraseña guardada es \(contraseñaGuardada)")
+            print("El correo guardado es \(correoGuardado) y la contraseña guardada es \(contraseñaGuardada)")
             
             
 

@@ -147,7 +147,7 @@ struct InicioSesionView: View {
                     .padding(.bottom, 65)
 
 
-                Button(action: iniciarSesion)//, label: //FIXED SIW
+                Button(action: iniciarSesion)
                     {
                     Text("INICIAR SESIÓN")
                         .fontWeight(.bold)
@@ -216,24 +216,22 @@ struct InicioSesionView: View {
     }
     
     func iniciarSesion() {
-                
+            
+        
         let objetoDatosUsuario = SaveData()
-        
-         print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
-        
-        isHomeActive.toggle()
-        
+
+                 print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
+
         if objetoDatosUsuario.validar(correo: correo, contraseña: contraseña){
-                      isHomeActive.toggle()
-                  }else{
-                      //Comentar linea de abajo para habilitar funcionalidad de validacion de usuario.
-                      isHomeActive.toggle()
-                      print("Tus datos son incorrectos")
-                      
-                  }
-                        
+            isHomeActive = true
+
+        }else{
+                    //comentar la linea de abajo para habilitar funcionalidad de validacion de usuario.
+        //ADD ALERT
+            print("Tus datos son incorrectos")
+
+        }
     }
-    
     
 }
 
@@ -424,18 +422,36 @@ struct RegistroView:View {
     
     func registrarse() {
 
-        if correo == "" && contraseña == confirmacionContraseña && contraseña != ""  {
+//        if correo == "" && contraseña == confirmacionContraseña && contraseña != ""  {
+//
+//      let objetoRegistrarDatos = SaveData()
+//
+//            let registrar = objetoRegistrarDatos
+//            .registrarDatos(correo: correo, contraseña: contraseña)
+//        print("se registraron datos con exito? \(registrar)")
+//
+//      }
+//        else{
+//                 print("datos incorrectos vuelva a intentarlo")
+//             }
         
-      let objetoRegistrarDatos = SaveData()
-
-            let registrar = objetoRegistrarDatos
-            .registrarDatos(correo: correo, contraseña: contraseña)
-        print("se registraron datos con exito? \(registrar)")
-
-      }
-        else{
-                 print("datos incorrectos vuelva a intentarlo")
-             }
+        
+        print("Me registro con el correo \(correo), la contraseña \(contraseña) y confirmación de contraseña \(confirmacionContraseña)")
+           
+               //validación contraseña
+        
+               if contraseña == confirmacionContraseña{
+                 
+                   let objetoActualizadorDatos = SaveData()
+                   
+                   let resultado = objetoActualizadorDatos.guardarDatos(correo: correo, contraseña: contraseña, nombre: "")
+                   
+                   print("Se guardaron los datos con exito?: \(resultado)")
+                   
+               }else{
+                   
+                   print("Contraseñas diferentes, vuelve a intentarlo")
+               }
         
     }
     
