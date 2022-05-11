@@ -22,6 +22,7 @@
 		689E44542791C67100B43494 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E44532791C67100B43494 /* GamesView.swift */; };
 		689E44592791C95F00B43494 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E44582791C95F00B43494 /* Model.swift */; };
 		689E445B2791C99D00B43494 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E445A2791C99D00B43494 /* ViewModel.swift */; };
+		68DFDFC0282C2CE20023723C /* SUImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DFDFBF282C2CE20023723C /* SUImagePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		689E44532791C67100B43494 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
 		689E44582791C95F00B43494 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		689E445A2791C99D00B43494 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		68DFDFBF282C2CE20023723C /* SUImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +96,10 @@
 		689E44552791C8B800B43494 /* Vistas */ = {
 			isa = PBXGroup;
 			children = (
+				689E44532791C67100B43494 /* GamesView.swift */,
 				680E4CEA27875CFA0058FFB6 /* ContentView.swift */,
 				6891D266278C76A0007298B1 /* Home.swift */,
-				689E44532791C67100B43494 /* GamesView.swift */,
 				6880CE2027A0408100CD091C /* GameView.swift */,
-				688EE25D28231A1000275E8E /* SaveData.swift */,
 				686F5FFE27A3B0AF0086A3EA /* FavoritesView.swift */,
 				68660A70281203720009D200 /* ProfileView.swift */,
 				688EE25B2822E7AC00275E8E /* EditProfileView.swift */,
@@ -117,8 +118,10 @@
 		689E44572791C8FE00B43494 /* VistasModelos */ = {
 			isa = PBXGroup;
 			children = (
+				688EE25D28231A1000275E8E /* SaveData.swift */,
 				689E445A2791C99D00B43494 /* ViewModel.swift */,
 				686F5FFC27A353B00086A3EA /* SearchGame.swift */,
+				68DFDFBF282C2CE20023723C /* SUImagePickerView.swift */,
 			);
 			path = VistasModelos;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				688EE25E28231A1000275E8E /* SaveData.swift in Sources */,
 				68660A71281203730009D200 /* ProfileView.swift in Sources */,
 				688EE25C2822E7AC00275E8E /* EditProfileView.swift in Sources */,
+				68DFDFC0282C2CE20023723C /* SUImagePickerView.swift in Sources */,
 				6891D267278C76A0007298B1 /* Home.swift in Sources */,
 				686F5FFD27A353B00086A3EA /* SearchGame.swift in Sources */,
 				680E4CE927875CFA0058FFB6 /* GameStreamApp.swift in Sources */,

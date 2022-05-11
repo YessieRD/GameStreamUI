@@ -217,20 +217,21 @@ struct InicioSesionView: View {
     
     func iniciarSesion() {
                 
+        let objetoDatosUsuario = SaveData()
+        
          print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
         
         isHomeActive.toggle()
         
-        /* if objetoDatosUsuario.validar(correo: correo, contrasena: contraseña){
+        if objetoDatosUsuario.validar(correo: correo, contraseña: contraseña){
                       isHomeActive.toggle()
                   }else{
                       //Comentar linea de abajo para habilitar funcionalidad de validacion de usuario.
                       isHomeActive.toggle()
                       print("Tus datos son incorrectos")
                       
-                  }*/
+                  }
                         
-            
     }
     
     
@@ -358,7 +359,6 @@ struct RegistroView:View {
                 }
 
 
-             //   Button(action: registrate, label: { //FIXED SIW
                 Button(action: registrarse) {
 
                     Text("REGÍSTRATE")
@@ -422,20 +422,20 @@ struct RegistroView:View {
         //logica de tomar fotos.
     }
     
-    func registrarse()  {
+    func registrarse() {
+
+        if correo == "" && contraseña == confirmacionContraseña && contraseña != ""  {
         
-                    
-     /*       let objetoRegistrarDatos = SaveData()
-            
-            let resultado = objetoRegistrarDatos
-            .guardarDatos(correo: correo, contraseña: contraseña, name: String)
-        
-       
-        print("se guardandolos datos con exito? \(resultado)")  */
-        
-        print("Me registro con el correo \(correo), la contraseña \(contraseña) y confirmación de contraseña \(confirmacionContraseña)")
-    
-        //Logica de validación
+      let objetoRegistrarDatos = SaveData()
+
+            let registrar = objetoRegistrarDatos
+            .registrarDatos(correo: correo, contraseña: contraseña)
+        print("se registraron datos con exito? \(registrar)")
+
+      }
+        else{
+                 print("datos incorrectos vuelva a intentarlo")
+             }
         
     }
     

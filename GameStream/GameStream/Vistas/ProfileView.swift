@@ -62,7 +62,7 @@ struct ProfileView: View {
         
             perform: {
                 
-            print("Resisando si tengo Datos de usuario en user default")
+            print("Revisando si tengo Datos de usuario en user default")
             }
         )
         

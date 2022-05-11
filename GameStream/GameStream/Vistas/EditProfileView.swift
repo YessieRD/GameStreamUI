@@ -59,7 +59,8 @@ struct ModuloEditar: View {
          VStack(alignment: .leading) {
           
              
-            Text("Correo electrónico").foregroundColor(Color("Dark-Cian"))
+            Text("Correo electrónico")
+                 .foregroundColor(Color("Dark-Cian"))
 
 
 
@@ -152,7 +153,7 @@ struct ModuloEditar: View {
         let resultado = objetoActualizadorDatos
             .guardarDatos(correo: correo, contraseña: contraseña, nombre: nombre)
         
-    print("se guardandolos datos con exito? \(resultado)")
+    print("se guardaron los datos con exito? \(resultado)")
     }
 }
 

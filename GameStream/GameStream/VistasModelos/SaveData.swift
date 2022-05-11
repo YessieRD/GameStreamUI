@@ -10,9 +10,34 @@ import Foundation
 
 class SaveData {
     
-    var correo: String = "
+    var correo: String = ""
     var contraseña: String = ""
     var nombre: String = ""
+    
+    func registrarDatos(correo:String, contraseña:String) -> Bool {
+        
+        var correoRegistrado = ""
+        var contraseña = ""
+        
+        if UserDefaults.standard.object(forKey: "datosUsuario") != nil{
+            
+            correoRegistrado = UserDefaults.standard.stringArray(forKey: "datosUsuario")![0]
+            
+            contraseña = UserDefaults.standard.stringArray(forKey: "datosUsuario")![1]
+            
+            print("Se ha registrado los datos de correo \(correoRegistrado) y contraseña \(contraseña)")
+            
+            return true
+                }else{
+
+            print("Su correo ya esta registrado")
+
+        return false
+  
+    }
+        
+    }
+        
     
     func guardarDatos(correo:String, contraseña:String, nombre:String) ->
     Bool {
@@ -25,7 +50,7 @@ class SaveData {
         return true
     }
     
-
+    
         func recuperarDatos() -> [String] {
             
             let datosUsuario:[String] =
@@ -69,4 +94,6 @@ class SaveData {
         return false
         }
     }
+    
+        
 }
