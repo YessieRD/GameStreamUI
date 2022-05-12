@@ -32,7 +32,7 @@ struct ContentView: View {
            
 
 
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -466,6 +466,7 @@ struct ContentView_Previews: PreviewProvider {
      
         Group {
             ContentView()
+                .previewDevice("iPad Pro (11-inch) (3rd generation)")
             InicioSesionView().background(Color(red: 18/255, green: 31/255, blue: 61/255, opacity: 100).ignoresSafeArea())
         }
         
