@@ -217,12 +217,14 @@ struct InicioSesionView: View {
     
     func iniciarSesion() {
             
-        
+
         let objetoDatosUsuario = SaveData()
 
                  print("Mi correo es \(correo) y mi contraseña es \(contraseña)")
 
-        if objetoDatosUsuario.validar(correo: correo, contraseña: contraseña){
+        if contraseña != ""  && correo != "" &&
+            objetoDatosUsuario.validar(correo: correo, contraseña: contraseña){
+            
             isHomeActive = true
 
         }else{
@@ -441,7 +443,7 @@ struct RegistroView:View {
            
                //validación contraseña
         
-               if contraseña == confirmacionContraseña{
+               if contraseña == confirmacionContraseña && correo != "" {
                  
                    let objetoActualizadorDatos = SaveData()
                    
