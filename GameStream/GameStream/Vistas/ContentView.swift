@@ -85,7 +85,7 @@ struct InicioSesionView: View {
 
     var body: some View {
 
-     //   Spacer(minLength: 63)// FIXED SIW
+        Spacer(minLength: 63)// FIXED SIW
 
         ScrollView {
 
@@ -245,40 +245,40 @@ struct RegistroView:View {
 
     var body: some View{
 
-       //Spacer(minLength: 32)//FIXED SIW
+       Spacer(minLength: 63)//FIXED SIW
 
         ScrollView {
 
-        VStack(alignment:.center){
+//        VStack(alignment:.center){
 
-            Text("Elije una foto de perfil")
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding(.bottom, -1.0 )
-
-            Text("Puedes cambiar o elegirla mas adelante")
-                .font(.footnote)
-                .fontWeight(.light)
-                .foregroundColor(.gray)
-                .padding(.bottom)
-
-            Button(action: tomarFoto, label: {
-
-                ZStack {
-                    Image("perfilejemplo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80.0, height: 80.0)
-
-                    Image(systemName: "camera")
-                        .foregroundColor(.white)
-                        //.padding(.bottom, -5.0)
-                }
-
-            })
-
-
-        }.padding(.bottom, 3.0)
+//            Text("Elije una foto de perfil")
+//                .fontWeight(.bold)
+//                .foregroundColor(.white)
+//                .padding(.bottom, -1.0 )
+//
+//            Text("Puedes cambiar o elegirla mas adelante")
+//                .font(.footnote)
+//                .fontWeight(.light)
+//                .foregroundColor(.gray)
+//                .padding(.bottom)
+//
+//            Button(action: tomarFoto, label: {
+//
+//                ZStack {
+//                    Image("perfilejemplo")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 80.0, height: 80.0)
+//
+//                    Image(systemName: "camera")
+//                        .foregroundColor(.white)
+//                        //.padding(.bottom, -5.0)
+//                }
+//
+//            })
+//
+//
+//        }.padding(.bottom, 3.0)
 
 
 
@@ -355,6 +355,7 @@ struct RegistroView:View {
                     .background(Color("Dark-Cian"))
                     .padding(.bottom, 30)
                 }
+                Spacer(minLength: 23)//FIXED SIW
 
 
                 Button(action: registrarse) {
